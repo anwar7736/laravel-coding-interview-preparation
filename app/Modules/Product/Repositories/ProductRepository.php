@@ -4,30 +4,43 @@ namespace App\Modules\Product\Repositories;
 
 use App\Modules\Product\Models\Product;
 use App\Modules\Product\Models\ProductStock;
+use App\Modules\Product\Repositories\Interfaces\ProductRepositoryInterface;
 
 class ProductRepository implements ProductRepositoryInterface
 {
     /**
      * Create a new class instance.
      */
-    public function __construct()
+    public function __construct(protected Product $model)
     {
         //
     }
 
     public function all()
     {
-        return Product::all();
+        return $this->model->active()
+                    ->with([
+                        'varations', 'brand', 'unit', 
+                        'warranty', 'categories', 
+                        'slug', 'primaryImage'
+                    ])
+                    ->get();
     }
 
     public function find(int $id): ?Product
     {
-        return Product::findOrFail($id);
+        return $this->model::active()
+                    ->with([
+                        'varations', 'brand', 'unit', 
+                        'warranty', 'categories', 
+                        'slug', 'primaryImage'
+                    ])
+                    ->findOrFail($id);
     }
 
     public function create(array $data): ?Product
     {
-        $product = Product::create([
+        $product = $this->model::create([
             'name' => $data['name'],
             'brand_id' => $data['brand_id'],
             'unit_id' => $data['unit_id'],

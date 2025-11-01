@@ -51,15 +51,6 @@ class Product extends Model
                     ]);
     }
 
-    public function images()
-    {
-        return $this->morphMany(Media::class, 'mediable')
-                    ->where([
-                        'file_type' => 'image',
-                        'is_primary' => 0
-                    ]);
-    }
-
     public function scopeActive($query, $status = Status::ACTIVE){
         return $query->where('status', $status);
     }

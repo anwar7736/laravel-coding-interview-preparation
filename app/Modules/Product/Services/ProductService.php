@@ -2,33 +2,33 @@
 
 namespace App\Modules\Product\Services;
 
-use App\Modules\Product\Repositories\ProductRepositoryInterface;
-use App\Modules\Product\Models\ProductStock;
-use Str;
+use App\Modules\Product\Repositories\Interfaces\ProductRepositoryInterface;
+use App\Modules\Product\Repositories\Interfaces\repositorysitoryInterface;
+use Illuminate\Support\Str;
 class ProductService
 {
     /**
      * Create a new class instance.
      */
-    public function __construct(protected ProductRepositoryInterface $productRepo)
+    public function __construct(protected ProductRepositoryInterface $repository)
     {
 
     }
 
     public function all()
     {
-        return $this->productRepo->all();
+        return $this->repository->all();
     }
 
     public function find(int $id)
     {
-        return $this->productRepo->find($id);
+        return $this->repository->find($id);
     }
 
     public function create(array $data)
     {
         if(isset($data['image'])){
-            $data['image'] = uploadFile($data->hasFile('image'));
+            $data['image'] = uploadFile($data['image']);
         }
 
         $data['variations'] = [];
@@ -52,13 +52,13 @@ class ProductService
 
         $data['slug'] = Str::slug($data['name']);
 
-        return $this->productRepo->create($data);
+        return $this->repository->create($data);
     }
 
     public function update(int $id, array $data)
     {
         if(isset($data['image'])){
-            $data['image'] = uploadFile($data->hasFile('image'));
+            $data['image'] = uploadFile($data['image']);
         }
 
         $data['variations'] = [];
@@ -84,11 +84,11 @@ class ProductService
 
         $data['slug'] = Str::slug($data['name']);
 
-        return $this->productRepo->update($id, $data);
+        return $this->repository->update($id, $data);
     }
 
     public function delete(int $id)
     {
-        return $this->productRepo->delete($id);
+        return $this->repository->delete($id);
     }
 }
