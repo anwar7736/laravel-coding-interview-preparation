@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('storage_id')->nullable()->constrained();
             $table->decimal('purchase_price', 15, 2)->default(0);
             $table->decimal('selling_price', 15, 2)->default(0);
+            $table->decimal('stock', 15, 2)->default(0);
             $table->tinyInteger('status')->default(1)->comment('1=active, 0=inactive');
             $table->timestamps();
         });

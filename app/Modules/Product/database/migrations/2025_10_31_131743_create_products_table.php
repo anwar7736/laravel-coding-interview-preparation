@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('unit_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('warranty_id')->nullable()->constrained();
             $table->decimal('alert_quantity', 8, 2)->default(0);
+            $table->tinyInteger('type')->default(1)->comment('1=single, 2=variable');
             $table->string('short_description')->nullable();
             $table->string('description')->nullable();
             $table->string('seo_meta_title')->nullable();

@@ -18,15 +18,13 @@ use Illuminate\Support\Facades\DB;
 class ProductController
 {
 
-    public function __construct(protected ProductService $service)
-    {
-        
-    }
+    public function __construct(protected ProductService $service){}
 
     public function index()
     {
         $data = $this->service->all();
-        return view('Product::product.index', compact('data'));
+        // return view('Product::product.index', compact('data'));
+        return apiResponse(true, 'Product list fetched', $data);
     }
 
     /**
@@ -66,7 +64,8 @@ class ProductController
      */
     public function show(string $id)
     {
-        //
+        $data = $this->service->find($id);
+        return apiResponse(true, 'Product data fetched', $data);
     }
 
     /**

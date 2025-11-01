@@ -12,6 +12,11 @@ class Product extends Model
     use SoftDeletes, HasFactory;
     protected $guarded = ['id'];
 
+    public function varations()
+    {
+        return $this->hasMany(Brand::class);
+    }
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);

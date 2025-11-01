@@ -29,67 +29,67 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // for ($i = 1; $i <= 10; $i++) {
-        //     $brand = Brand::create([
-        //         'name' => 'Brand ' . $i,
-        //         'short_description' => 'This is a short description for Brand ' . $i,
-        //     ]);
+        for ($i = 1; $i <= 10; $i++) {
+            $brand = Brand::create([
+                'name' => 'Brand ' . $i,
+                'short_description' => 'This is a short description for Brand ' . $i,
+            ]);
 
-        //     $brand->slug()->create([
-        //         'slug' => 'brand-' . $i,
-        //     ]);
-        // }
+            $brand->slug()->create([
+                'slug' => 'brand-' . $i,
+            ]);
+        }
 
-        // for ($i = 1; $i <= 10; $i++) {
-        //     $category = Category::create([
-        //         'name' => 'Category ' . $i,
-        //         'short_description' => 'This is a short description for Category ' . $i,
-        //     ]);
+        for ($i = 1; $i <= 10; $i++) {
+            $category = Category::create([
+                'name' => 'Category ' . $i,
+                'short_description' => 'This is a short description for Category ' . $i,
+            ]);
 
-        //     $category->slug()->create([
-        //         'slug' => 'category-' . $i,
-        //     ]);
-        // }
+            $category->slug()->create([
+                'slug' => 'category-' . $i,
+            ]);
+        }
 
-        // Warranty::create([
-        //     'name' => '7 Days Brand Warranty',
-        //     'type' => 1,
-        //     'count' => 7,
-        // ]);
+        Warranty::create([
+            'name' => '7 Days Brand Warranty',
+            'type' => 1,
+            'count' => 7,
+        ]);
 
 
-        // Unit::create([
-        //     'name' => 'Pieces',
-        //     'short_name' => 'pcs',
-        // ]);
+        Unit::create([
+            'name' => 'Pieces',
+            'short_name' => 'pcs',
+        ]);
         
 
-        // Size::insert([
-        //     ['name' => 'XXL'],
-        //     ['name' => 'XL'],
-        //     ['name' => 'L'],
-        //     ['name' => 'M'],
-        //     ['name' => 'S'],
-        //     ['name' => 'XS'],
-        // ]);
+        Size::insert([
+            ['name' => 'XXL'],
+            ['name' => 'XL'],
+            ['name' => 'L'],
+            ['name' => 'M'],
+            ['name' => 'S'],
+            ['name' => 'XS'],
+        ]);
 
-        // Color::insert([
-        //     ['name' => 'Red'],
-        //     ['name' => 'Green'],
-        //     ['name' => 'Blue'],
-        //     ['name' => 'Cyan'],
-        //     ['name' => 'Magenta'],
-        //     ['name' => 'Yellow'],
-        //     ['name' => 'KeyBlack'],
-        // ]);
+        Color::insert([
+            ['name' => 'Red'],
+            ['name' => 'Green'],
+            ['name' => 'Blue'],
+            ['name' => 'Cyan'],
+            ['name' => 'Magenta'],
+            ['name' => 'Yellow'],
+            ['name' => 'KeyBlack'],
+        ]);
 
-        // Storage::insert([
-        //     ['name' => '4GB/64GB'],
-        //     ['name' => '6GB/128GB'],
-        //     ['name' => '8GB/128GB'],
-        //     ['name' => '12GB/256GB'],
-        //     ['name' => '16GB/512GB'],
-        // ]);
+        Storage::insert([
+            ['name' => '4GB/64GB'],
+            ['name' => '6GB/128GB'],
+            ['name' => '8GB/128GB'],
+            ['name' => '12GB/256GB'],
+            ['name' => '16GB/512GB'],
+        ]);
         
 }
 

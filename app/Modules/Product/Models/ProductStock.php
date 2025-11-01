@@ -29,6 +29,11 @@ class ProductStock extends Model
         return $this->belongsTo(Color::class);
     }
 
+    public function image()
+    {
+        return $this->morphOne(Media::class, 'mediable');
+    }
+
     public function scopeActive($query, $status = Status::ACTIVE){
         return $query->where('status', $status);
     }
