@@ -3,6 +3,8 @@
 namespace App\Modules\Product\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class ProductUpdateRequest extends FormRequest
 {
@@ -42,5 +44,14 @@ class ProductUpdateRequest extends FormRequest
             'selling_price.*' => ['required', 'numeric', 'min:0'],
             'quantity.*' => ['required', 'numeric', 'min:0'],
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'status' => false,
+            'message' => 'Validation errors',
+            'errors' => $validator->errors()
+        ]));
     }
 }
