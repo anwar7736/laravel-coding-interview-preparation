@@ -4,6 +4,7 @@ namespace App\modules\product\repositories;
 
 use App\Modules\Product\Models\ProductStock;
 use App\Modules\Product\Models\Transaction;
+use App\Modules\Product\Models\TransactionLine;
 
 class TransactionRepository
 {
@@ -68,7 +69,19 @@ class TransactionRepository
             'note' => $data['sell_note'] ?? null,
         ]);
 
-        $transaction->details()->createMany($data['items']);
+        if(count($data['items']) > 0){
+            $transaction->details()->createMany($data['items']);
+        }
+
+        $deletedTransactionLines = TransactionLine::whereNotIn('id', $data['line_ids'])->get();
+
+        if($deletedTransactionLines->count()){
+            foreach ($deletedVariations as $key => $dtl) {
+               $variation = ProductStock::active()->findOrFail($dtl->variation_id);
+               $this->increaseProductStock($variation, $dtl->quantity);
+               $dtl->delete();
+            }
+        }
         $transaction->payments()->update([
             'payment_date' => $transaction->date,
             'amount' => $data['total'],
