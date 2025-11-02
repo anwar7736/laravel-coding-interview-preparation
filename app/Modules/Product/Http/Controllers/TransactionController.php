@@ -6,6 +6,7 @@ use App\Modules\Product\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Modules\Product\Services\TransactionService;
 use App\Modules\Product\Http\Requests\TransactionStoreRequest;
+use App\Modules\Product\Http\Requests\TransactionUpdateRequest;
 
 class TransactionController
 {
@@ -82,7 +83,7 @@ class TransactionController
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductUpdateRequest $request, string $id)
+    public function update(TransactionUpdateRequest $request, string $id)
     {
          try {
             DB::beginTransaction();
