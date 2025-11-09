@@ -4,8 +4,46 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42f4cbca39b2da9a3ffe442c01d7f9df",
+    "content-hash": "3296a04ffd5bea7e46b75d1bbf49227c",
     "packages": [
+        {
+            "name": "anwar7736/contact",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/anwar7736/laravel-simple-contact-package.git",
+                "reference": "19d1245c316ecabf237122bf01ac2e1cbab125ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/anwar7736/laravel-simple-contact-package/zipball/19d1245c316ecabf237122bf01ac2e1cbab125ac",
+                "reference": "19d1245c316ecabf237122bf01ac2e1cbab125ac",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Anwar\\Contact\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "anwar7736",
+                    "email": "anwarhossain7736@gmail.com"
+                }
+            ],
+            "description": "Send email to the website admin and its store to the database table",
+            "support": {
+                "issues": "https://github.com/anwar7736/laravel-simple-contact-package/issues",
+                "source": "https://github.com/anwar7736/laravel-simple-contact-package/tree/main"
+            },
+            "time": "2023-06-03T15:34:13+00:00"
+        },
         {
             "name": "artem-schander/l5-modular",
             "version": "2.1.1",
@@ -8544,12 +8582,14 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "anwar7736/contact": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
