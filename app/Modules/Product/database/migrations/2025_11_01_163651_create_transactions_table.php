@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('contact_id')->constrained()->cascadeOnDelete();
-            $table->date('date')->unique();
+            $table->date('date');
             $table->enum('type', ['sell', 'sell_return', 'purchase', 'purchase_return'])->default('sell');
             $table->string('invoice_no')->unique();
             $table->decimal('total', 15, 2)->default(0);
