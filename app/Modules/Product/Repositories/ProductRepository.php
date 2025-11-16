@@ -111,9 +111,12 @@ class ProductRepository implements ProductRepositoryInterface
             ]);
         }
 
+        $line_ids = [];
+
         foreach ($data['variations'] as $key => $variation) {
            if(isset($variation['line_id'])){
                $variationData = ProductStock::findOrFail($variation['line_id']);
+               $line_ids[] = $variationData->id;
                $variationData->update([
                     'size_id' => $variation['size_id'],
                     'color_id' => $variation['color_id'],
@@ -150,7 +153,7 @@ class ProductRepository implements ProductRepositoryInterface
 
         }
 
-        $deletedVariations = ProductStock::whereNotIn('id', $data['variations']['line_id'])->get();
+        $deletedVariations = ProductStock::whereNotIn('id', $line_ids)->get();
 
         if($deletedVariations->count()){
             foreach ($deletedVariations as $key => $dv) {
