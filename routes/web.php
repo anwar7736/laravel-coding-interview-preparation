@@ -6,9 +6,9 @@ use App\Http\Controllers\SQLExecuteController;
 use App\Modules\Product\Models\Brand;
 use Illuminate\Support\Facades\DB;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 Route::get('/multi-step-form', [App\Http\Controllers\MultiStepFormController::class, 'create'])->name('create');
@@ -56,7 +56,7 @@ Route::group(['prefix' => 'database-replication', 'as' => 'database-replication'
                         'name' => 'MY NEW TEST BRAND '.rand(111111,999999),
                         ''
                 ]);
-                
+
                 return response([
                   'success' => true,
                   'message' => "New brand added successfully",
