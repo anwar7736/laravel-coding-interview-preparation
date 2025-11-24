@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SQLExecuteController;
@@ -10,6 +11,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::resource('posts', PostController::class);
 
 Route::get('/multi-step-form', [App\Http\Controllers\MultiStepFormController::class, 'create'])->name('create');
 Route::post('/stepOne', [App\Http\Controllers\MultiStepFormController::class, 'stepOne'])->name('stepOne');

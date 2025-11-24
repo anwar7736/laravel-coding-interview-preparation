@@ -11,20 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
-            $table->id();
-            $table->string('contact_id')->unique();
-            $table->enum('type', ['customer', 'supplier', 'both'])->default('customer');
-            $table->string('name');
-            $table->string('phone')->unique();
-            $table->string('email')->nullable()->unique();
-            $table->string('address')->nullable();
-            $table->decimal('opening_balance', 8, 2)->default(0);
-            $table->text('remarks')->nullable();
-            $table->tinyInteger('status')->default(1)->comment('0=>inactive, 1=>active');
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if(!Schema::hasTable('contacts')) {
+            Schema::create('contacts', function (Blueprint $table) {
+                $table->id();
+                $table->string('contact_id')->unique();
+                $table->enum('type', ['customer', 'supplier', 'both'])->default('customer');
+                $table->string('name');
+                $table->string('phone')->unique();
+                $table->string('email')->nullable()->unique();
+                $table->string('address')->nullable();
+                $table->decimal('opening_balance', 8, 2)->default(0);
+                $table->text('remarks')->nullable();
+                $table->tinyInteger('status')->default(1)->comment('0=>inactive, 1=>active');
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        }
     }
 
     /**
