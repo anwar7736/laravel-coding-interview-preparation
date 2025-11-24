@@ -48,7 +48,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return response()->json([
+            'success' => true,
+            'data' => $post
+        ]);
     }
 
     /**
