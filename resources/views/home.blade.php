@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <h5>Execution Time: {{ $executionTime }} seconds</h5>
                     <div class="table-responsive">
                         <table class="table table-bordered mt-3">
                             <thead>
@@ -33,7 +34,7 @@
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ Carbon\Carbon::parse($user->created_at)->format('Y-m-d') }}</td>
                                     </tr>
                                 @empty
                                     <tr>
