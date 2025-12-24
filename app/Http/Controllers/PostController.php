@@ -14,11 +14,18 @@ class PostController extends Controller
      */
     public function index(): JsonResponse
     {
-        $posts = Post::select('id', 'title', 'content', 'created_at')->get();
+       try {
+         $posts = Post::select('id', 'title', 'content', 'created_at')->get();
         return response()->json([
             'success' => true,
             'data' => $posts
         ]);
+       } catch (\Throwable $th) {
+         return response()->json([
+            'success' => false,
+            'data' => $th->getMessage()
+        ]);
+       }
     }
 
     /**

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // $users = User::latest('id')->get();
+        $users = Cache::remember('users', 60, function () {
+            return User::latest('id')->get();
+        });
+        return view('home', compact('users'));
     }
 }
